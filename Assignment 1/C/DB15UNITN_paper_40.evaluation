@@ -1,0 +1,77 @@
+2
+For each part, the errors are catalogated as Minor[M] or Critical[C].
+
+===== PART A 
+> ER
+1-M AriplaneType must land on at least one Airport.
+    
+2-C The relation between Ariports and Cities called "provinces" needs to be an
+    attribute of Cities (or better named, Location) because in the same 
+    province there could be more airports.
+
+3-C The relation between Technician and AriplaneType must be Total 
+    Participation because a Tech needs to fix at least one AirplaneType, 
+    otherwise is a useless Employee.  
+
+4-C If a company that can build aircraft has no aircraft produced, then that 
+    company doesn't produce aircraft. For these reason, company should be an
+    attribute of AriplaneType or the relation between Companies and Airplain
+    Types needs to be Total Participation.
+
+6-C If the entity LegInstance is weak could not have a primary key, because 
+    according to definition of weak entity, his primary key shuold be the 
+    primary key of Legs, AirplaneType and a date.
+
+
+> SCHEMA
+1-M He puts the NOT NULL constraint not in the schema but under it where he
+    describe the Foreign key.
+
+2-M In my opinion the entity Pilots and Technicians can be collapsed into 
+    Employees with a new attribute "type" that describe if the employer is tech
+    or a pilot.
+
+3-C He has write that he can represents the LegInstance into the schema when 
+    could just put another entity with primary key taken by Legs Airplane and a
+    date.
+
+
+> SQL 
+1-M He use "int" instead of "INTEGER".
+
+
+
+===== PART B 
+> ER
+1-M A Spy can have no Skills, but according to the text is reasonably to think
+    that a Spy has at least one skill; so the relation between Spy and 
+    Specialization needs to be a Total Participation
+
+2-M Use the Spy name as primary key implies that can not be two spies with the
+    same name, that can happened; the solution is to put an id.
+
+3-C There is not the possibilities to create Group of Spies that participate on
+    a mission
+
+4-C According by text a Spy has a list of nickname, so the relation between
+    Spies and Nicknames needs to be Total Participation
+
+5-C It is not clear that a Spy receives a grade from a completed mission
+    ( according by text ) because the attribute Grade is in the relation called
+    "Participates", so I assumed that a Spy gets a grade by participate into a 
+    mission, completed or not.
+
+6-C The attribute AGLocation in Agencies should be a relation with entity 
+    Country, because otherwise there is a redundant data.
+
+
+> SCHEMA
+1-M He puts the NOT NULL constraint not in the schema but under it where he
+    describe the Foreign key.
+
+
+> SQL
+1-C In Mission create statement, secondaryObjective is marked as NOT NULL, when
+    in Schema is not.
+
+1-M He use "int" instead of "INTEGER".

@@ -1,0 +1,107 @@
+1
+For each part, the errors are cataloged as Minor[M] or Critical[C].
+
+===== PART A 
+> ER
+1-C Airplane can not be a weak entity, because there is a way to uniquely
+    identify a Airplane ( according to the text, Airplane has a id ).
+
+2-C Leg can not be a weak entity for the same reason above.
+
+3-M The attribute "number_of_legs" in Leg entity is a redundant attribute,
+    because you can easly get it with a query.
+
+4-C The relation between Leg and LegInstance is not a ISA because a Leg is a 
+    particular instance of a Leg, in a particular date and with a particular
+    aircraft, not a specific type of Leg.
+
+5-M In Airport entity there are two attribute, city and province, that 
+    logically must go in a separate entity.
+
+6-C The relation between Technician and AriplaneType must be Total 
+    Participation because a Tech needs to fix at least one AirplaneType, 
+    otherwise is a useless Employee.
+
+7-C For the same reason above in the relation between Pilot and Airplane.
+
+
+> SCHEMA
+1-C According to the many-to-many relation between Tech and AirplaneType, 
+    "type_name" attribute in Technician schema should moved out in a separated
+    entity; because in this case one Tech can fix only one type of Airplane.
+ 
+2-C For the same reason of point 1, in schema Pilot the "id_airplane".
+
+3-C According to ER, is missing schema for entity AssignedTo and Fix
+
+4-C Missing the schema for relation "HasNumberOf" between Flight and Leg.
+
+5-C For the point 4, there will be no attribute "flight_number" in Leg schema.
+
+
+> SQL
+1-M ON DELETE and ON UPGRADE action missing.
+
+
+
+===== PART B 
+> ER
+1-M Is logically correct to make a relation called Headquarter between Agency
+    and Country.
+
+2-C The relation WorkFor between Agency and Spy should be Total Participation
+    because the text said: "a Spy work for a Agency"; and is not logical 
+    correct to have a Agency with zero spy that works for it.
+
+3-C A Spy can't have a list of nicknames, according to text.
+
+4-C A Spy can't have a list of Skills and his level associated with.
+
+5-C There is not a list of skills that a Spy can be associated.
+
+6-C The ISA relation between OwnMission and CompletedMission is not properly
+    corrected because is not a specification of a type of mission, but is a
+    property that mission have. If there is an association between Outcome
+    and the Mission ( mission is complete ) then a Spy gets a grade for that
+    completed mission.
+
+7-C There is not possibilities to create Group of Spies that participate on a 
+    Mission ( according to text ).
+
+8-C There is a relation "ParticipateIn" that is not related with nothing.
+
+9-C According to text, a Mission is separated in a number of Legs; so the 
+    relation between OwnMission and Country should be Total Participant instead
+    many( or zero ) country associated.
+
+10-C The relation called Nationality between Spy and Country should be
+     Many-to-One and Total Participation, because a Spy were born in exactly
+     one country.
+
+
+> SCHEMA
+1-C According to ER diagram entity Agency has only a primary key named 
+    "agency_name", but in schema there are two primary key: agency_name and
+    headquarter.
+
+2-C "subdivision" attribute in OwnAgency entity is not a primary key in ER 
+    diagram, but it is in schema.
+
+3-C According to the relation between Country and Agency in ER diagram,
+    "served_agency" should not be listed in Country schema, because is a 
+    many-to-many relation.
+
+4-C According to the relation "WorkFor" between Spy and Agency, the attribute
+    "agency_name" in Spy schema should not be here but in a separate schema.
+
+5-C For the same reason of point 2,3 and 4: the attribute "subdivision" in
+    Mission schema.
+
+6-C According to ER diagram the attribute spy_grade should not be into the
+    schema CompletedMission, because the relation is many-to-many.
+
+7-C attribute "leg_num" in Leg is marked as primary key, in ER diagram is not.    
+
+
+> SQL
+1-M ON DELETE and ON UPGRADE action missing.

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# COPY task 1 in to_submit folder
+cp ../task1/load.sql .
+sed -i '1s/^/\\c db2016;\n/' load.sql
+
+# COPY task 2 in to_submit folder
+cp ../task2/algebra.pdf RA.pdf
+
+# COPY task 3 in to_submit folder
+#cd ../task3
+#for (( i=1; i<=17; i++ ))
+for file in $( ls ../task3 | grep sql )
+do
+    cp ../task3/$file .
+    sed -i '1s/^/\\c db2016;\n/' $file
+    #file=$i.sql
+    #if [ -f "$file" ]
+    #then
+    #    cp $file ../to_submit
+    #    sed -i '1s/^/\\c db2016;\n/' ../to_submit/$file
+    #fi
+done
+
+

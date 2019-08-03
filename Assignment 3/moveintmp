@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir /tmp/dati
+mkdir /tmp/output
+sudo touch /tmp/output/companies.csv
+sudo touch /tmp/output/stock_price.csv
+sudo touch /tmp/output/stock_symbols.csv
+cp sql/*.sql /tmp
+cp sample/*.csv /tmp/dati

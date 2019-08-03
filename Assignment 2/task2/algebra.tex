@@ -1,0 +1,54 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb,amsmath}
+
+% TITLE SECTION
+\title{Database - Task 2}				% title of the document
+\date{}									% date - empty = no date
+
+% DOCUMENT SECTION
+\begin{document}
+   	%\maketitle							% display the title
+	%\thispagestyle{empty}				% no page numbers
+
+	\paragraph{A)}
+	\begin{align*}
+		\rho({C_{1},\ \sigma_{country\ =\ 'IT'}(\ \Pi_{language,\ percentage}(Language)\ )) }\\
+		\rho({C_{2},\ \sigma_{country\ =\ 'IT'}(\ \Pi_{language,\ percentage}(Language)\ )) }\\
+		\Pi_{language}(C_{1} \times_{C_{1}.percentage\ >\ C_{2}.percentage} C_{2})
+	\end{align*}
+	\newline{}
+
+	\paragraph{B)}
+	\begin{align*}
+		\Pi_{country}( \sigma_{language\ =\ 'English'\ OR\ language\ =\ 'French'}(Language)\ )
+	\end{align*}
+	\newline{}
+
+	\paragraph{C)}
+	\begin{align*}
+		\rho(\ L_{1},\ \Pi_{country,\ language}(Language)\ ) \\
+		\rho(\ L_{2},\ \Pi_{country,\ language}(Language)\ ) \\
+		\rho(\ L_{3},\ \Pi_{country,\ language}(Language)\ ) \\
+		\Pi_{L_{1}.country}(
+			\sigma_{ \substack{L_{1}.country\ =\ L_{2}.country\ AND\\
+							   L_{2}.country\ =\ L_{3}.country\ AND\\
+							   L_{1}.language\ <>\ L_{2}.language\ AND\\
+							   L_{2}.language\ <>\ L_{3}.language
+			         }
+			}
+		)(\ L_{1} \times L_{2} \times L_{3}\ )
+	\end{align*}
+	\newline{}
+
+	\paragraph{D)}
+	\begin{align*}
+		\rho(C_{1},\ \Pi_{code,\ area}(Country)\ ) \\
+		\rho(C_{2},\ \Pi_{code,\ area}(Country)\ ) \\
+		\rho(C_{3},\ \Pi_{C_{2}.code}(C_{1} \Join_{C_{1}.area\ >\ C_{2}.area} C_{2})\ )\\				
+		\rho(C_{4},\ C_{2} \Join C_{3}) \\	
+		\rho(C_{5},\ C_{2} \Join C_{3}) \\
+		\rho(C_{6},\ \Pi_{C_{5}.code}(C_{4} \Join_{C_{4}.area\ >\ C_{3}.area} C_{3})\ ) \\
+		\Pi_{C_{3}.area}(C_{3})\ -\ C_{6}
+	\end{align*}
+
+\end{document}
